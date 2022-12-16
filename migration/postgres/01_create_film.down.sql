@@ -1,0 +1,6 @@
+
+DROP TABLE IF EXISTS film;
+
+DROP TABLE IF EXISTS category;
+
+DROP TABLE IF EXISTS actor;
