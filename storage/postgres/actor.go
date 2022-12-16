@@ -177,7 +177,7 @@ func (f *actorRepo) Update(ctx context.Context, req *models.UpdateActor) (int64,
 	return rowsAffected.RowsAffected(), nil
 }
 
-func (f *actorRepo) DeleteActor(ctx context.Context, req *models.ActorPrimarKey) error {
+func (f *actorRepo) Delete(ctx context.Context, req *models.ActorPrimarKey) error {
 
 	_, err := f.db.Exec(ctx, "DELETE FROM film_actor WHERE actor_id = $1", req.Id)
 	if err != nil {

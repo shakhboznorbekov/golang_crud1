@@ -6,8 +6,8 @@ import (
 
 	"github.com/jackc/pgx/v4/pgxpool"
 
-	"github.com/shakhboznorbekov/mytasks/golang_crud1/config"
-	"github.com/shakhboznorbekov/mytasks/golang_crud1/storage"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/config"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/storage"
 )
 
 type Store struct {

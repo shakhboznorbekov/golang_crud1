@@ -22,7 +22,7 @@ func NewCategoryRepo(db *pgxpool.Pool) *categoryRepo {
 	}
 }
 
-func (f *categoryRepo) CreateCategory(ctx context.Context, category *models.CreateCategory) (string, error) {
+func (f *categoryRepo) Create(ctx context.Context, category *models.CreateCategory) (string, error) {
 
 	var (
 		id    = uuid.New().String()
@@ -49,7 +49,7 @@ func (f *categoryRepo) CreateCategory(ctx context.Context, category *models.Crea
 	return id, nil
 }
 
-func (f *categoryRepo) GetByPKeyCategory(ctx context.Context, pkey *models.CategoryPrimarKey) (*models.Category, error) {
+func (f *categoryRepo) GetByPKey(ctx context.Context, pkey *models.CategoryPrimarKey) (*models.Category, error) {
 
 	var (
 		id        sql.NullString
@@ -85,7 +85,7 @@ func (f *categoryRepo) GetByPKeyCategory(ctx context.Context, pkey *models.Categ
 	}, nil
 }
 
-func (f *categoryRepo) GetListCategory(ctx context.Context, req *models.GetListCategoryRequest) (*models.GetListCategoryResponse, error) {
+func (f *categoryRepo) GetList(ctx context.Context, req *models.GetListCategoryRequest) (*models.GetListCategoryResponse, error) {
 
 	var (
 		resp   = models.GetListCategoryResponse{}
@@ -145,7 +145,7 @@ func (f *categoryRepo) GetListCategory(ctx context.Context, req *models.GetListC
 	return &resp, err
 }
 
-func (f *categoryRepo) UpdateCategory(ctx context.Context, req *models.UpdateCategory) (int64, error) {
+func (f *categoryRepo) Update(ctx context.Context, req *models.UpdateCategory) (int64, error) {
 
 	var (
 		query  = ""
@@ -177,7 +177,7 @@ func (f *categoryRepo) UpdateCategory(ctx context.Context, req *models.UpdateCat
 	return rowsAffected.RowsAffected(), nil
 }
 
-func (f *categoryRepo) DeleteCategory(ctx context.Context, req *models.CategoryPrimarKey) error {
+func (f *categoryRepo) Delete(ctx context.Context, req *models.CategoryPrimarKey) error {
 
 	_, err := f.db.Exec(ctx, "DELETE FROM film_category WHERE category_id = $1", req.Id)
 	if err != nil {

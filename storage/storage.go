@@ -3,7 +3,7 @@ package storage
 import (
 	"context"
 
-	"github.com/shakhboznorbekov/mytasks/golang_crud1/models"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/models"
 )
 
 type StorageI interface {
