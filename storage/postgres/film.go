@@ -8,8 +8,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v4/pgxpool"
 
-	"github.com/shakhboznorbekov/mytasks/golang_crud/models"
-	"github.com/shakhboznorbekov/mytasks/golang_crud/pkg/helper"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/golang_crud1/models"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/golang_crud1/pkg/helper"
 )
 
 type filmRepo struct {

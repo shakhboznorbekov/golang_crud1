@@ -6,8 +6,8 @@ import (
 
 	"github.com/jackc/pgx/v4/pgxpool"
 
-	"github.com/shakhboznorbekov/mytasks/golang_crud/config"
-	"github.com/shakhboznorbekov/mytasks/golang_crud/storage"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/golang_crud1/config"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/golang_crud1/storage"
 )
 
 type Store struct {
@@ -58,7 +58,7 @@ func (s *Store) Film() storage.FilmRepoI {
 	return s.film
 }
 
-func (s *Store) Actor() storage.ActorRepoI {
+func (s *Store) Actor() storage.ActorRepo {
 
 	if s.actor == nil {
 		s.actor = NewActorRepo(s.db)
@@ -67,7 +67,7 @@ func (s *Store) Actor() storage.ActorRepoI {
 	return s.actor
 }
 
-func (s *Store) Category() storage.CategoryRepoI {
+func (s *Store) Category() storage.CategoryRepo {
 
 	if s.category == nil {
 		s.category = NewCategoryRepo(s.db)

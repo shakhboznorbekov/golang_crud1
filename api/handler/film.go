@@ -8,7 +8,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/shakhboznorbekov/mytasks/golang_crud/models"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/golang_crud1/models"
 )
 
 // CreateFilm godoc

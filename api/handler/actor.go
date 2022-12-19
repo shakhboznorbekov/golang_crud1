@@ -8,7 +8,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/shakhboznorbekov/mytasks/golang_crud/models"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/golang_crud1/models"
 )
 
 // CreateActor godoc
@@ -160,9 +160,9 @@ func (h *HandlerV1) UpdateActor(c *gin.Context) {
 		actor models.UpdateActor
 	)
 
-	actor.Id = c.Param("id")
+	actor.First_name = c.Param("id")
 
-	if actor.Id == "" {
+	if actor.First_name == "" {
 		log.Printf("error whiling update: %v\n", errors.New("required film id").Error())
 		c.JSON(http.StatusBadRequest, errors.New("required film id").Error())
 		return
@@ -194,7 +194,7 @@ func (h *HandlerV1) UpdateActor(c *gin.Context) {
 
 	resp, err := h.storage.Actor().GetByPKey(
 		context.Background(),
-		&models.ActorPrimarKey{Id: actor.Id},
+		&models.ActorPrimarKey{Id: actor.First_name},
 	)
 
 	if err != nil {

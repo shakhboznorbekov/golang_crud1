@@ -5,9 +5,9 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
-	"github.com/shakhboznorbekov/mytasks/golang_crud/api"
-	"github.com/shakhboznorbekov/mytasks/golang_crud/config"
-	"github.com/shakhboznorbekov/mytasks/golang_crud/storage/postgres"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/golang_crud1/api"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/golang_crud1/config"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/golang_crud1/storage/postgres"
 )
 
 func main() {

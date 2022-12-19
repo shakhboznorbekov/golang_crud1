@@ -8,8 +8,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v4/pgxpool"
 
-	"github.com/shakhboznorbekov/mytasks/golang_crud/models"
-	"github.com/shakhboznorbekov/mytasks/golang_crud/pkg/helper"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/golang_crud1/models"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/golang_crud1/pkg/helper"
 )
 
 type categoryRepo struct {
@@ -39,7 +39,7 @@ func (f *categoryRepo) Create(ctx context.Context, category *models.CreateCatego
 
 	_, err := f.db.Exec(ctx, query,
 		id,
-		category.FilmId,
+		category.Name,
 	)
 
 	if err != nil {
@@ -52,9 +52,9 @@ func (f *categoryRepo) Create(ctx context.Context, category *models.CreateCatego
 func (f *categoryRepo) GetByPKey(ctx context.Context, pkey *models.CategoryPrimarKey) (*models.Category, error) {
 
 	var (
-		id        sql.NullString
-		filmId    sql.NullString
-		updatedAt sql.NullString
+		id         sql.NullString
+		categoryId sql.NullString
+		updatedAt  sql.NullString
 	)
 
 	query := `
@@ -70,7 +70,7 @@ func (f *categoryRepo) GetByPKey(ctx context.Context, pkey *models.CategoryPrima
 	err := f.db.QueryRow(ctx, query, pkey.Id).
 		Scan(
 			&id,
-			&filmId,
+			&categoryId,
 			&updatedAt,
 		)
 
@@ -80,7 +80,7 @@ func (f *categoryRepo) GetByPKey(ctx context.Context, pkey *models.CategoryPrima
 
 	return &models.Category{
 		Id:        id.String,
-		FilmId:    filmId.String,
+		Name:      categoryId.String,
 		UpdatedAt: updatedAt.String,
 	}, nil
 }
@@ -118,15 +118,15 @@ func (f *categoryRepo) GetList(ctx context.Context, req *models.GetListCategoryR
 	for rows.Next() {
 
 		var (
-			id        sql.NullString
-			film_id   sql.NullString
-			updatedAt sql.NullString
+			id          sql.NullString
+			category_id sql.NullString
+			updatedAt   sql.NullString
 		)
 
 		err := rows.Scan(
 			&resp.Count,
 			&id,
-			&film_id,
+			&category_id,
 			&updatedAt,
 		)
 
@@ -134,9 +134,9 @@ func (f *categoryRepo) GetList(ctx context.Context, req *models.GetListCategoryR
 			return nil, err
 		}
 
-		resp.Categories = append(resp.Categories, &models.Category{
+		resp.Categorys = append(resp.Categorys, &models.Category{
 			Id:        id.String,
-			FilmId:    film_id.String,
+			Name:      category_id.String,
 			UpdatedAt: updatedAt.String,
 		})
 
@@ -163,8 +163,8 @@ func (f *categoryRepo) Update(ctx context.Context, req *models.UpdateCategory) (
 	`
 
 	params = map[string]interface{}{
-		"category_id": req.Id,
-		"film_id":     req.FilmId,
+		"category_id": req.Name,
+		"name":        req.Name,
 	}
 
 	query, args := helper.ReplaceQueryParams(query, params)

@@ -8,7 +8,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/shakhboznorbekov/mytasks/golang_crud/models"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/golang_crud1/models"
 )
 
 // CreateCategory godoc
@@ -160,9 +160,9 @@ func (h *HandlerV1) Update(c *gin.Context) {
 		category models.UpdateCategory
 	)
 
-	category.Id = c.Param("id")
+	models.UpdateCategoryId = c.Param("id")
 
-	if category.Id == "" {
+	if category.Name == "" {
 		log.Printf("error whiling update: %v\n", errors.New("required film id").Error())
 		c.JSON(http.StatusBadRequest, errors.New("required film id").Error())
 		return

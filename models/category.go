@@ -5,18 +5,17 @@ type CategoryPrimarKey struct {
 }
 
 type CreateCategory struct {
-	FilmId string `json:"film_id"`
+	Name string `json:"name"`
 }
-
 type Category struct {
 	Id        string `json:"category_id"`
-	FilmId    string `json:"film_id"`
+	Name      string `json:"name"`
+	CreatedAt string `json:"created_at"`
 	UpdatedAt string `json:"updated_at"`
 }
 
 type UpdateCategory struct {
-	Id     string `json:"category_id"`
-	FilmId string `json:"film_id"`
+	Name string `json:"name"`
 }
 
 type GetListCategoryRequest struct {
@@ -25,6 +24,6 @@ type GetListCategoryRequest struct {
 }
 
 type GetListCategoryResponse struct {
-	Count      int32       `json:"count"`
-	Categories []*Category `json:"categories"`
+	Count     int32       `json:"count"`
+	Categorys []*Category `json:"categorys"`
 }

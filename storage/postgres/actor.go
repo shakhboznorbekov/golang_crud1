@@ -8,8 +8,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v4/pgxpool"
 
-	"github.com/shakhboznorbekov/mytasks/golang_crud/models"
-	"github.com/shakhboznorbekov/mytasks/golang_crud/pkg/helper"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/golang_crud1/models"
+	"github.com/shakhboznorbekov/mytasks/golang_crud/golang_crud1/pkg/helper"
 )
 
 type actorRepo struct {
@@ -39,7 +39,7 @@ func (f *actorRepo) Create(ctx context.Context, actor *models.CreateActor) (stri
 
 	_, err := f.db.Exec(ctx, query,
 		id,
-		actor.FilmId,
+		actor.First_name,
 	)
 
 	if err != nil {
@@ -79,9 +79,9 @@ func (f *actorRepo) GetByPKey(ctx context.Context, pkey *models.ActorPrimarKey) 
 	}
 
 	return &models.Actor{
-		Id:        id.String,
-		FilmId:    filmId.String,
-		UpdatedAt: updatedAt.String,
+		Id:         id.String,
+		First_name: filmId.String,
+		UpdatedAt:  updatedAt.String,
 	}, nil
 }
 
@@ -119,14 +119,14 @@ func (f *actorRepo) GetList(ctx context.Context, req *models.GetListActorRequest
 
 		var (
 			id        sql.NullString
-			film_id   sql.NullString
+			actor_id  sql.NullString
 			updatedAt sql.NullString
 		)
 
 		err := rows.Scan(
 			&resp.Count,
 			&id,
-			&film_id,
+			&actor_id,
 			&updatedAt,
 		)
 
@@ -135,9 +135,9 @@ func (f *actorRepo) GetList(ctx context.Context, req *models.GetListActorRequest
 		}
 
 		resp.Actors = append(resp.Actors, &models.Actor{
-			Id:        id.String,
-			FilmId:    film_id.String,
-			UpdatedAt: updatedAt.String,
+			Id:         id.String,
+			First_name: actor_id.String,
+			UpdatedAt:  updatedAt.String,
 		})
 
 	}
@@ -163,8 +163,8 @@ func (f *actorRepo) Update(ctx context.Context, req *models.UpdateActor) (int64,
 	`
 
 	params = map[string]interface{}{
-		"actor_id": req.Id,
-		"film_id":  req.FilmId,
+		"actor_id":   req.First_name,
+		"first_name": req.First_name,
 	}
 
 	query, args := helper.ReplaceQueryParams(query, params)
